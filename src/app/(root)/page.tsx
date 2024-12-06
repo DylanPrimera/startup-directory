@@ -1,6 +1,6 @@
 import { SearchForm, StartupCard } from "@/components";
 import { Post } from "@/interfaces";
-import { client } from "@/sanity/lib/client";
+import { sanityFetch, SanityLive } from "@/sanity/lib/live";
 import { STARTUPS_QUERY } from "@/sanity/lib/queries";
 
 interface Props {
@@ -9,7 +9,11 @@ interface Props {
 
 export default async function Home({ searchParams }: Props) {
   const { query } = await searchParams;
-  const posts: Post[] = await client.fetch(STARTUPS_QUERY);
+  const params = { search: query || null };
+  const { data: posts } = await sanityFetch({
+    query: STARTUPS_QUERY,
+    params,
+  });
 
   return (
     <>
@@ -28,12 +32,15 @@ export default async function Home({ searchParams }: Props) {
         </p>
         <ul className="mt-7 card_grid">
           {posts?.length > 0 ? (
-            posts.map((post) => <StartupCard key={post._id} post={post}/>)
+            posts.map((post: Post) => (
+              <StartupCard key={post._id} post={post} />
+            ))
           ) : (
             <p className="no-results">No startups found</p>
           )}
         </ul>
       </section>
+      <SanityLive />
     </>
   );
 }
