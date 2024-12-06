@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { workSans } from "@/config/font";
+import 'easymde/dist/easymde.min.css';
+
 
 
 export const metadata: Metadata = {

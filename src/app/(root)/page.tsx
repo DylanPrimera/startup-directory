@@ -1,4 +1,7 @@
 import { SearchForm, StartupCard } from "@/components";
+import { Post } from "@/interfaces";
+import { client } from "@/sanity/lib/client";
+import { STARTUPS_QUERY } from "@/sanity/lib/queries";
 
 interface Props {
   searchParams: Promise<{ query?: string }>;
@@ -6,20 +9,7 @@ interface Props {
 
 export default async function Home({ searchParams }: Props) {
   const { query } = await searchParams;
-  const posts = [
-    {
-      id: 1,
-      title: "We Robots",
-      description: "This is the first post",
-      views: 55,
-      author: { id: 1, name: "John Doe" },
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      category: "Robots",
-      image:
-        "https://images.unsplash.com/photo-1634912314704-c646c586b131?q=80&w=294&auto=format&fit=crop&ixlib=rb-4.03&ixid=M3wxMjA3fDB8MHxwaG9by1wYWdlfHx8fGVufDB8fHx8fA%3D3D",
-    },
-  ];
+  const posts: Post[] = await client.fetch(STARTUPS_QUERY);
 
   return (
     <>
@@ -38,7 +28,7 @@ export default async function Home({ searchParams }: Props) {
         </p>
         <ul className="mt-7 card_grid">
           {posts?.length > 0 ? (
-            posts.map((post) => <StartupCard key={post.id} post={post}/>)
+            posts.map((post) => <StartupCard key={post._id} post={post}/>)
           ) : (
             <p className="no-results">No startups found</p>
           )}

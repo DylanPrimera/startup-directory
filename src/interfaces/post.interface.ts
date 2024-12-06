@@ -1,15 +1,23 @@
 export interface Post {
-    id: number;
-    title: string;
-    category: string;
-    description: string;
-    author: Author;
-    image: string;
-    views: number;
-    createdAt: Date;
-    updatedAt: Date;
+  _id: string;
+  title: string;
+  image: string;
+  description: string;
+  category: string;
+  slug: Slug;
+  _createdAt: Date;
+  author: Author;
+  views: number;
 }
-interface Author {
-    id: number;
-    name: string;
+
+export interface Author {
+  _id: string;
+  name: string;
+  image: string;
+  email: string;
+}
+
+export interface Slug {
+  current: string;
+  _type: string;
 }
