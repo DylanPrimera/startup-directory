@@ -21,21 +21,21 @@ export const StartupCard = ({ post }: Props) => {
       </div>
       <div className="flex-between mt-5 gap-5">
         <div className="flex-1">
-          <Link href={`/user/${post.author._id}`} title="Go to author details">
-            <p className="text-16-medium line-clamp-1">{post.author.name}</p>
+          <Link href={`/user/${post.author?._id}`} title="Go to author details">
+            <p className="text-16-medium line-clamp-1">{post.author?.name}</p>
           </Link>
           <Link href={`/startup/${post._id}`} title="Go to startup details">
             <h3 className="text-26-semibold line-clamp-1">{post.title}</h3>
           </Link>
         </div>
-        <Link href={`/user/${post.author._id}`}>
+        <Link href={`/user/${post.author?._id}`}>
           <Image
             src={post.author.image}
             alt="avatar author"
             width={48}
             height={48}
             className="rounded-full"
-            title={`Go to ${post.author.name} page`}
+            title={`Go to ${post.author?.name} page`}
           />
         </Link>
       </div>
