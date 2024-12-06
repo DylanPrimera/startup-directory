@@ -29,6 +29,7 @@ export default {
                   "100": "#F7F7F7",
                   DEFAULT: "#FFFFFF",
               },
+              terciary:"#FBF8EF"
           },
           fontFamily: {
               "work-sans": ["var(--font-work-sans)"],
