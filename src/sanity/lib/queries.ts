@@ -12,3 +12,22 @@ export const STARTUPS_QUERY =
     category, 
     image
 }`);
+
+export const STARTUP_BY_SLUG_QUERY = `*[_type=='startup' && slug.current==$slug][0]{
+  _id, 
+    title, 
+    slug,  
+    _createdAt, 
+    author -> {_id, name, image,email}, 
+    views, 
+    description, 
+    category, 
+    image,
+    pitch
+}`;
+
+export const STARTUP_VIEWS_QUERY =
+  defineQuery(`*[_type=='startup' && slug.current==$slug][0]{
+  _id,
+  views
+}`);

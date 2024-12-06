@@ -29,7 +29,8 @@ export default {
                   "100": "#F7F7F7",
                   DEFAULT: "#FFFFFF",
               },
-              terciary:"#FBF8EF"
+              terciary:"#FBF8EF",
+              quaternary:"#F96E2A"
           },
           fontFamily: {
               "work-sans": ["var(--font-work-sans)"],

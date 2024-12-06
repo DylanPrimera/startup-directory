@@ -8,6 +8,7 @@ export interface Post {
   _createdAt: Date;
   author: Author;
   views: number;
+  pitch?: string;
 }
 
 export interface Author {

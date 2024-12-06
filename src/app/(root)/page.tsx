@@ -15,6 +15,7 @@ export default async function Home({ searchParams }: Props) {
     params,
   });
 
+
   return (
     <>
       <section className="heading_container">
