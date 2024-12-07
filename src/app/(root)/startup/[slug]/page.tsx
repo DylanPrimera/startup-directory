@@ -69,7 +69,7 @@ export default async function StartupDetailPage({ params }: Props) {
         <hr className="divider"/>
         {/* TODO: EDITOR SELECTED STARTUPS */}
         <Suspense fallback={<Skeleton className="view_skeleton"/>}>
-           <View slug={slug} />
+           <View slug={slug} id={post._id} />
         </Suspense>
       </section>
     </>
