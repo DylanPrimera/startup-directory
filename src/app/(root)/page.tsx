@@ -2,18 +2,22 @@ import { SearchForm, StartupCard } from "@/components";
 import { Post } from "@/interfaces";
 import { sanityFetch, SanityLive } from "@/sanity/lib/live";
 import { STARTUPS_QUERY } from "@/sanity/lib/queries";
+import { auth } from "../../../auth";
 
 interface Props {
   searchParams: Promise<{ query?: string }>;
 }
 
 export default async function Home({ searchParams }: Props) {
+  const session = await auth();
   const { query } = await searchParams;
   const params = { search: query || null };
   const { data: posts } = await sanityFetch({
     query: STARTUPS_QUERY,
     params,
   });
+
+  console.log({session});
 
 
   return (
