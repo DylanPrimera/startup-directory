@@ -1,5 +1,5 @@
 import { client } from "@/sanity/lib/client";
-import { AUTHOR_BY_GOOGLE_ID_QUERY } from "@/sanity/lib/queries";
+import { AUTHOR_BY_GOOGLE_EMAIL_QUERY } from "@/sanity/lib/queries";
 import { writeClient } from "@/sanity/lib/write-client";
 import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
@@ -10,12 +10,13 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     async signIn({ user, profile }) {
       const existingUser = await client
         .withConfig({ useCdn: false })
-        .fetch(AUTHOR_BY_GOOGLE_ID_QUERY, {
-          id: user.id,
+        .fetch(AUTHOR_BY_GOOGLE_EMAIL_QUERY, {
+          email: user.email,
         });
       if (!existingUser) {
         await writeClient.create({
           _type: "author",
+          _id: user?.id,
           id: user?.id,
           name: user?.name,
           email: user?.email,
@@ -30,8 +31,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       if (account && user) {
         const sanityUser = await client
           .withConfig({ useCdn: false })
-          .fetch(AUTHOR_BY_GOOGLE_ID_QUERY, {
-            id: user?.id,
+          .fetch(AUTHOR_BY_GOOGLE_EMAIL_QUERY, {
+            email: user?.email,
           });
         token.id = sanityUser?.id;
       }

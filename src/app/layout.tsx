@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { workSans } from "@/config/font";
 import 'easymde/dist/easymde.min.css';
+import { Toaster } from "@/components/ui/toaster";
 
 
 
@@ -21,6 +22,7 @@ export default function RootLayout({
         className={`${workSans.variable} antialiased`}
       >
         {children}
+        <Toaster/>
       </body>
     </html>
   );
