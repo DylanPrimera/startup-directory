@@ -9,7 +9,7 @@ import { formSchema } from "@/lib/validation";
 import { z } from "zod";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
-import { createIdea } from "@/lib/actions";
+import { createStartup } from "@/lib/actions";
 export const CreationForm = () => {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [pitch, setPich] = useState<string>("");
@@ -27,7 +27,7 @@ export const CreationForm = () => {
       };
 
       await formSchema.parseAsync(formValues);
-      const result = await createIdea(formData, pitch)
+      const result = await createStartup(formData, pitch)
       if(result.status === 'SUCCESS') {
         toast({
           title: "Success",

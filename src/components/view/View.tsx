@@ -28,8 +28,7 @@ export const View = async ({ slug, id }: Props) => {
       </div>
       <p className="view-text">
         <span className="font-black">
-          {views === 1 && views !== null ? "1 view" : views + " views"}
-          {views === null && "0 views"}
+          {views === 1 && views === null ? "1 view" : views + " views"}
         </span>
       </p>
     </div>

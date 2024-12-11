@@ -5,7 +5,7 @@ import { auth } from "../../auth";
 import { parseServerActionResponse } from "./utils";
 import slugify from "slugify";
 
-export const createIdea = async (form: FormData, pitch: string) => {
+export const createStartup = async (form: FormData, pitch: string) => {
   try {
     const session = await auth();
     if (!session) {
