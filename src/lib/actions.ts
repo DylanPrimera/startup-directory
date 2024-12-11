@@ -34,9 +34,7 @@ export const createIdea = async (form: FormData, pitch: string) => {
       },
       pitch,
     };
-    console.log({ startup });
     const result = await writeClient.create({ _type: "startup", ...startup });
-    console.log(result);
     return parseServerActionResponse({
       ...result,
       error: "",
