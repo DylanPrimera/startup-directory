@@ -2,7 +2,7 @@ import { client } from "@/sanity/lib/client";
 import { Ping } from "./Ping";
 import { STARTUP_VIEWS_QUERY } from "@/sanity/lib/queries";
 import { writeClient } from "@/sanity/lib/write-client";
-import { unstable_after as after } from "next/server";
+import { after } from "next/server";
 
 interface Props {
   slug: string;
@@ -28,7 +28,8 @@ export const View = async ({ slug, id }: Props) => {
       </div>
       <p className="view-text">
         <span className="font-black">
-          {views === 1 ? "1 view" : views + " views"}
+          {views === 1 && views !== null ? "1 view" : views + " views"}
+          {views === null && "0 views"}
         </span>
       </p>
     </div>

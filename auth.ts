@@ -34,7 +34,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           .fetch(AUTHOR_BY_GOOGLE_EMAIL_QUERY, {
             email: user?.email,
           });
-        token.id = sanityUser?.id;
+        token.id = sanityUser?._id;
       }
       return token;
     },
