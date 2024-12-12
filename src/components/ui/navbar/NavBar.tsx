@@ -1,6 +1,9 @@
 import Link from "next/link";
 import React from "react";
 import { auth, signIn, signOut } from "../../../../auth";
+import { IoLogOutOutline } from "react-icons/io5";
+import { FiPlusSquare } from "react-icons/fi";
+import { Avatar, AvatarFallback, AvatarImage } from "../avatar";
 
 export const NavBar = async () => {
   const session = await auth();
@@ -16,7 +19,11 @@ export const NavBar = async () => {
           {session && session?.user ? (
             <>
               <Link href="/startup/create">
-                <span>Create</span>
+                <span className="max-sm:hidden">Create</span>
+                <FiPlusSquare
+                  className="size-6 sm:hidden"
+                  title="Create a startup"
+                />
               </Link>
               <form
                 action={async () => {
@@ -24,10 +31,22 @@ export const NavBar = async () => {
                   await signOut();
                 }}
               >
-                <button type="submit">Logout</button>
+                <button type="submit">
+                  <span className="max-sm:hidden">Logout</span>
+                  <IoLogOutOutline
+                    className="size-6 sm:hidden text-red-500"
+                    title="Logout"
+                  />
+                </button>
               </form>
               <Link href={`/user/${session?.user.id}`}>
-                <span>{session?.user.name}</span>
+                <Avatar className="size-10" title={session?.user?.name??''}>
+                  <AvatarImage
+                    src={session?.user?.image ?? ""}
+                    alt={session?.user?.name ?? ""}
+                  />
+                  <AvatarFallback>AV</AvatarFallback>
+                </Avatar>
               </Link>
             </>
           ) : (
