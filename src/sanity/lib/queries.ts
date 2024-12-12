@@ -39,4 +39,11 @@ export const AUTHOR_BY_GOOGLE_EMAIL_QUERY = defineQuery(`*[_type=='author' && em
     name,
     email,
     image
-  }`)
+}`)
+
+export const AUTHOR_BY_ID_QUERY = defineQuery(`*[_type=='author' && _id==$id][0]{
+  _id,
+  name,
+  email,
+  image
+}`)
