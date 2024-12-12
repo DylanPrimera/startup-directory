@@ -33,7 +33,7 @@ export const CreationForm = () => {
           title: "Success",
           description: "Your startup has been submitted",
         });
-        router.push(`/startup/${result.slug}`)
+        router.push(`/startup/${result.slug.current}`)
       }
       return result;
     } catch (error) {
