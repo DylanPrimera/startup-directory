@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { useState, useActionState } from "react";
 import { Input } from "@/components/ui/input";
@@ -15,6 +17,7 @@ export const CreationForm = () => {
   const [pitch, setPich] = useState<string>("");
   const { toast } = useToast();
   const router = useRouter();
+  
 
   const handleFormSubmit = async (prevState: any, formData: FormData) => {
     try {
