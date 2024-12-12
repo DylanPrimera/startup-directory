@@ -1,4 +1,4 @@
-export interface Post {
+export interface Startup {
   _id: string;
   title: string;
   image: string;

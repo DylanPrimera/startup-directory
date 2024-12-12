@@ -1,4 +1,4 @@
-import { Post } from "@/interfaces";
+import { Startup } from "@/interfaces";
 import { formatDate } from "@/lib/utils";
 import { client } from "@/sanity/lib/client";
 import { STARTUP_BY_SLUG_QUERY } from "@/sanity/lib/queries";
@@ -18,7 +18,7 @@ interface Props {
 
 export default async function StartupDetailPage({ params }: Props) {
   const { slug } = await params;
-  const post: Post = await client.fetch(STARTUP_BY_SLUG_QUERY, { slug });
+  const post: Startup = await client.fetch(STARTUP_BY_SLUG_QUERY, { slug });
 
   if (!post) return notFound();
 
